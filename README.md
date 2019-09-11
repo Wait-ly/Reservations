@@ -34,4 +34,20 @@ From within the root directory:
 
 npm install
 
+## CRUD API Routes
 
+'GET': /api/:id/reservations
+  - retrieves a reservation for a specified id
+  - returns the data object for the reservation if successful
+
+'POST': /api/reservations
+  - creates a new reservation with the provided data
+  - returns the data object created for the new reservation if successful
+
+'PUT': /api/:id/reservations
+  - updates a reservation for a specified id
+  - returns the updated data object for the reservation if successful
+
+'DELETE': /api/:id/reservations
+  - deletes a reservation for a specified id
+  - returns the deleted data object for the reservation if successful
