@@ -7,6 +7,7 @@
 import React from 'react';
 // import styled, { createGlobalStyle } from 'styled-components';
 import moment from 'moment';
+import ReactDOM from 'react-dom';
 
 import PartySize from './partySizeModule.jsx';
 import DateModule from './dateModule.jsx';
@@ -296,7 +297,7 @@ class Reservations extends React.Component {
   }
 
   getListingData(listing = 'L1') {
-    return fetch(`http://54.67.39.70:3008/api/${listing}/reservations`, {
+    return fetch(`http://localhost:3002/api/${listing}/reservations`, {
       method: 'GET',
     })
       .then((res) => (
@@ -533,3 +534,5 @@ class Reservations extends React.Component {
 
 
 export default Reservations;
+
+ReactDOM.render(<Reservations />, document.getElementById('Reservations'));

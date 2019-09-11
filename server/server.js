@@ -25,8 +25,12 @@ app.get('/api/:id/reservations', (req, res) => {
       res.send(dataForListing);
     })
     .catch((err) => {
-      console.log('Error with retriving data for listing', err);
+      console.log('Error with retrieving data for listing', err);
     });
+});
+
+app.post('/api/reservations', (req, res) => {
+
 });
 
 app.listen(port, () => { console.log(`argh matey we be arriving at port ${port}`); });
