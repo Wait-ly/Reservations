@@ -97,7 +97,7 @@ db.once('open', () => {
     return allDays;
   };
 
-  generateDatesPerListing();
+  // generateDatesPerListing();
 
   (() => {
     const allData = [];

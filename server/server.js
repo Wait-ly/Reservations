@@ -22,6 +22,7 @@ app.get('/api/:id/reservations', (req, res) => {
   database.getListingData(param)
     .then((data) => {
       const dataForListing = data[0].Dates.slice();
+      console.log(dataForListing);
       res.send(dataForListing);
     })
     .catch((err) => {
@@ -30,7 +31,15 @@ app.get('/api/:id/reservations', (req, res) => {
 });
 
 app.post('/api/reservations', (req, res) => {
+  console.log('post');
+});
 
+app.put('/api/:id/reservations', (req, res) => {
+  console.log('updated');
+});
+
+app.delete('/api/:id/reservations', (req, res) => {
+  console.log('deleted');
 });
 
 app.listen(port, () => { console.log(`argh matey we be arriving at port ${port}`); });

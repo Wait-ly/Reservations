@@ -15,6 +15,8 @@ const reservationSchema = new mongoose.Schema({
       Date: String,
       Seats: [
         {
+          SeatNumber: Number,
+          Hours: String,
           time: String,
           reservations: {
             open: Number,
