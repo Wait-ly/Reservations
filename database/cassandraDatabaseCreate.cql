@@ -4,31 +4,22 @@ CREATE KEYSPACE sdc WITH REPLICATION ={'class': 'SimpleStrategy', 'replication_f
 USE sdc;
 
 DROP TABLE IF EXISTS reservations;
-DROP TABLE IF EXISTS tables;
-DROP TABLE IF EXISTS restaurants;
 
-CREATE TABLE restaurants (
-  id int PRIMARY KEY,
+CREATE TABLE reservations (
+  id int,
+  date date,
+  time time,
   name text,
+  table_size text,
+  restaurant_id int,
+  restaurant_name text,
   open timestamp,
-  close timestamp
-);
-
-CREATE TABLE tables (
-  id int PRIMARY KEY,
+  close timestamp,
   two smallint,
   four smallint,
   six smallint,
   eight smallint,
   ten smallint,
   twelve smallint,
-  restaurant_id int
-);
-
-CREATE TABLE reservations (
-  id int PRIMARY KEY,
-  datetime timestamp,
-  name text,
-  table_size text,
-  restaurant_id int
+  PRIMARY KEY ((restaurant_id, date), time)
 );

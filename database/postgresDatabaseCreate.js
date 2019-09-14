@@ -41,8 +41,9 @@ const postgresCreateTables = () => {
             table.smallint('eight');
             table.smallint('ten');
             table.smallint('twelve');
-            table.integer('restaurant_id').unsigned().references('id').inTable('restaurants')
-              .onDelete('CASCADE');
+            table.integer('restaurant_id');
+            // table.integer('restaurant_id').unsigned().references('id').inTable('restaurants')
+            // .onDelete('CASCADE');
           })
             .then(() => {
               console.log('tables table created');
@@ -56,8 +57,9 @@ const postgresCreateTables = () => {
                     table.timestamp('datetime');
                     table.string('name');
                     table.string('table_size');
-                    table.integer('restaurant_id').unsigned().references('id').inTable('restaurants')
-                      .onDelete('CASCADE');
+                    table.integer('restaurant_id');
+                    // table.integer('restaurant_id').unsigned().references('id').inTable('restaurants')
+                    // .onDelete('CASCADE');
                   })
                     .then(() => {
                       console.log('reservations table created');
