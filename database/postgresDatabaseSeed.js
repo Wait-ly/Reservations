@@ -51,7 +51,7 @@ reservations data object (10M):
 */
 
 const generateRestaurants = (callback) => {
-  for (let i = 1; i <= 501; i++) {
+  for (let i = 1; i <= 1000; i++) {
     const id = i;
     const name = faker.random.word();
     const open = `0${Math.floor(Math.random() * (9 - 6)) + 6}:00 AM`;
@@ -63,7 +63,7 @@ const generateRestaurants = (callback) => {
 };
 
 const generateTables = (callback) => {
-  for (let j = 1; j <= 501; j++) {
+  for (let j = 1; j <= 1000; j++) {
     const id = j;
     const two = Math.floor(Math.random() * (9 - 5)) + 5;
     const four = Math.floor(Math.random() * (9 - 5)) + 5;
@@ -91,7 +91,7 @@ const generateReservations = () => {
       const datetime = `${moment(`2019-${month}-${day}`, 'YYYY-MM-DD').format('YYYY-MM-DD')} ${moment(`${time}:00 AM`, 'HH:mm').format('hh:mm A')}`;
       const name = faker.name.findName();
       const table = tables[Math.floor(Math.random() * 6)];
-      const restaurant = Math.floor(Math.random() * (502 - 1)) + 1;
+      const restaurant = Math.floor(Math.random() * (1001 - 1)) + 1;
       const row = `"${id}","${datetime}","${name}","${table}","${restaurant}"`;
       write.write(row);
       // OBJECT FORMAT
