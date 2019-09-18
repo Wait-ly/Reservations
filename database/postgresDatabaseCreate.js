@@ -1,6 +1,6 @@
 const knex = require('knex')({
   client: 'pg',
-  connection: 'postgres://localhost/sdc',
+  connection: 'postgres://52.53.148.193/sdc',
 });
 
 const postgresDeleteTables = (callback) => {
@@ -42,8 +42,6 @@ const postgresCreateTables = () => {
             table.smallint('ten');
             table.smallint('twelve');
             table.integer('restaurant_id');
-            // table.integer('restaurant_id').unsigned().references('id').inTable('restaurants')
-            // .onDelete('CASCADE');
           })
             .then(() => {
               console.log('tables table created');
@@ -58,8 +56,6 @@ const postgresCreateTables = () => {
                     table.string('name');
                     table.string('table_size');
                     table.integer('restaurant_id');
-                    // table.integer('restaurant_id').unsigned().references('id').inTable('restaurants')
-                    // .onDelete('CASCADE');
                   })
                     .then(() => {
                       console.log('reservations table created');
@@ -70,110 +66,18 @@ const postgresCreateTables = () => {
         });
     });
 };
-// const postgresCreateTables = () => {
-//   knex.schema.hasTable('restaurants')
-//     .then((exists) => {
-//       if (exists) {
-//         pg.schema.dropTable('reservations')
-//           .then(() => {
-//             console.log('reservations table dropped');
-//             pg.schema.dropTable('tables');
-//           })
-//           .then(() => {
-//             console.log('tables table dropped');
-//             pg.schema.dropTable('restaurants');
-//           })
-//           .then(() => {
-//             console.log('restaurants table dropped'); pg.schema.createTable('restaurants', (table) => {
-//               table.increments('id').primary();
-//               table.string('name');
-//               table.integer('total_seats');
-//               table.float('open');
-//               table.float('close');
-//             })
-//               .then(() => {
-//                 console.log('restaurants table created');
-//                 pg.schema.hasTable('tables')
-//                   .then((exists) => {
-//                     if (exists) {
-//                       pg.schema.dropTable('tables').then(console.log('tables table dropped'));
-//                     }
-//                     pg.schema.createTable('tables', (table) => {
-//                       table.increments('id').primary();
-//                       table.integer('seats');
-//                       table.integer('restaurant_id').unsigned().references('id').inTable('restaurants')
-//                         .onDelete('CASCADE');
-//                     })
-//                       .then(() => {
-//                         console.log('tables table created');
-//                         pg.schema.hasTable('reservations')
-//                           .then((exists) => {
-//                             if (exists) {
-//                               pg.schema.dropTable('reservations').then(console.log('reservations table dropped'));
-//                             }
-//                             pg.schema.createTable('reservations', (table) => {
-//                               table.increments('id').primary();
-//                               table.float('date');
-//                               table.float('time');
-//                               table.integer('table_id').unsigned().references('id').inTable('tables')
-//                                 .onDelete('CASCADE');
-//                             })
-//                               .then(() => {
-//                                 console.log('reservations table created');
-//                                 pg.destroy();
-//                               });
-//                           });
-//                       });
-//                   });
-//               });
-//           });
-//       } else {
-//         pg.schema.createTable('restaurants', (table) => {
-//           table.increments('id').primary();
-//           table.string('name');
-//           table.integer('total_seats');
-//           table.float('open');
-//           table.float('close');
-//         })
-//           .then(() => {
-//             console.log('restaurants table created');
-//             pg.schema.hasTable('tables')
-//               .then((exists) => {
-//                 if (exists) {
-//                   pg.schema.dropTable('tables').then(console.log('tables table dropped'));
-//                 }
-//                 pg.schema.createTable('tables', (table) => {
-//                   table.increments('id').primary();
-//                   table.integer('seats');
-//                   table.integer('restaurant_id').unsigned().references('id').inTable('restaurants')
-//                     .onDelete('CASCADE');
-//                 })
-//                   .then(() => {
-//                     console.log('tables table created');
-//                     pg.schema.hasTable('reservations')
-//                       .then((exists) => {
-//                         if (exists) {
-//                           pg.schema.dropTable('reservations').then(console.log('reservations table dropped'));
-//                         }
-//                         pg.schema.createTable('reservations', (table) => {
-//                           table.increments('id').primary();
-//                           table.float('date');
-//                           table.float('time');
-//                           table.integer('table_id').unsigned().references('id').inTable('tables')
-//                             .onDelete('CASCADE');
-//                         })
-//                           .then(() => {
-//                             console.log('reservations table created');
-//                             pg.destroy();
-//                           });
-//                       });
-//                   });
-//               });
-//           });
-//       }
-//     });
-// };
-
+// creates tables in database if not created
+const resetTables = () => {
+  knex.schema.hasTable('restaurants')
+    .then((exists) => {
+      if (exists) {
+        create.postgresDeleteTables(create.postgresCreateTables);
+      } else {
+        create.postgresCreateTables();
+      }
+    });
+};
+resetTables();
 module.exports = {
   knex,
   postgresCreateTables,

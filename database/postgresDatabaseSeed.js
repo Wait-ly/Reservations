@@ -2,10 +2,9 @@ const { Pool, Client } = require('pg');
 const faker = require('faker');
 const moment = require('moment');
 const fs = require('fs');
-// const data = require('./sdcDataGenerator.js');
 
 const client = new Client({
-  host: 'localhost',
+  host: 'database',
   database: 'sdc',
 });
 /*
@@ -96,18 +95,6 @@ const generateReservations = () => {
       const restaurant = Math.floor(Math.random() * (2001 - 1)) + 1;
       const row = `"${id}","${datetime}","${name}","${table}","${restaurant}"`;
       write.write(row);
-      // OBJECT FORMAT
-      // const obj = {};
-      // obj.id = k;
-      // const time = Math.floor(Math.random() * (21 - 8)) + 8;
-      // const month = Math.floor(Math.random() * (13 - 9)) + 9;
-      // const day = Math.floor(Math.random() * (31 - 1)) + 1;
-      // obj.datetime = `${moment(`2019-${month}-${day}`, 'YYYY-MM-DD').format('YYYY-MM-DD')} ${moment(`${time}:00 AM`, 'HH:mm').format('hh:mm A')}`;
-      // obj.name = faker.name.findName();
-      // obj.table_size = tables[Math.floor(Math.random() * 6)];
-      // obj.restaurant_id = Math.floor(Math.random() * (501 - 1)) + 1;
-      // write.write(JSON.stringify(obj));
-
       if (k === 1e7) {
         break;
       }

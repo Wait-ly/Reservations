@@ -1,23 +1,11 @@
 const { Pool, Client } = require('pg');
-// const create = require('./postgresDatabaseCreate');
 const moment = require('moment');
-// const { knex } = create;
+
 const client = new Client({
-  host: 'localhost',
+  host: '52.53.148.193',
   database: 'sdc',
 });
-// creates tables in database if not created
-// const resetTables = () => {
-//   knex.schema.hasTable('restaurants')
-//     .then((exists) => {
-//       if (exists) {
-//         create.postgresDeleteTables(create.postgresCreateTables);
-//       } else {
-//         create.postgresCreateTables();
-//       }
-//     });
-// };
-// resetTables();
+
 // need to make function that retrieves all data from reservations, and formulates a data object based on the information not present in the reservations table
 client.connect();
 const getAllReservations = (id, callback) => {
