@@ -21,5 +21,5 @@ CREATE TABLE reservations (
   eight smallint,
   ten smallint,
   twelve smallint,
-  PRIMARY KEY ((restaurant_id, date), time)
+  PRIMARY KEY ((restaurant_id, date), time, reservation_name)
 );

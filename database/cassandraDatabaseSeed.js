@@ -28,6 +28,7 @@ reservations data object (10M):
 
 const generateReservations = (callback) => {
   const tables = ['two', 'four', 'six', 'eight', 'ten', 'twelve'];
+  const half = ['00', '30'];
   const write = fs.createWriteStream('./largeDataCass.csv');
   (async () => {
     for (let i = 1; i <= 1e7; i++) {
@@ -41,13 +42,14 @@ const generateReservations = (callback) => {
       const eight = Math.floor(Math.random() * (6 - 3)) + 3;
       const ten = Math.floor(Math.random() * (6 - 3)) + 3;
       const twelve = Math.floor(Math.random() * (3 - 1)) + 1;
-      const time = `${Math.floor(Math.random() * (21 - 8)) + 8}:00:00.000`;
+      const minutes = Math.floor(Math.random() * 2);
+      const time = `${Math.floor(Math.random() * (21 - 8)) + 8}:${half[minutes]}:00.000`;
       const month = Math.floor(Math.random() * (13 - 9)) + 9;
       const day = Math.floor(Math.random() * (31 - 1)) + 1;
       const date = moment(`2019-${month}-${day}`, 'YYYY-MM-DD').format('YYYY-MM-DD');
       const reservationName = faker.name.findName();
       const table = tables[Math.floor(Math.random() * 6)];
-      const restaurantId = Math.floor(Math.random() * (502 - 1)) + 1;
+      const restaurantId = Math.floor(Math.random() * (2001 - 1)) + 1;
       if (i > 1e7) {
         break;
       }

@@ -51,7 +51,7 @@ reservations data object (10M):
 */
 
 const generateRestaurants = (callback) => {
-  for (let i = 1; i <= 1000; i++) {
+  for (let i = 1; i <= 2000; i++) {
     const id = i;
     const name = faker.random.word();
     const open = `0${Math.floor(Math.random() * (9 - 6)) + 6}:00 AM`;
@@ -63,7 +63,7 @@ const generateRestaurants = (callback) => {
 };
 
 const generateTables = (callback) => {
-  for (let j = 1; j <= 1000; j++) {
+  for (let j = 1; j <= 2000; j++) {
     const id = j;
     const two = Math.floor(Math.random() * (9 - 5)) + 5;
     const four = Math.floor(Math.random() * (9 - 5)) + 5;
@@ -80,18 +80,20 @@ const generateTables = (callback) => {
 
 const generateReservations = () => {
   const tables = ['two', 'four', 'six', 'eight', 'ten', 'twelve'];
+  const half = ['00', '30'];
   const write = fs.createWriteStream('./largeData.csv');
   (async () => {
     for (let k = 1; k <= 1e7; k++) {
       // CSV FORMAT
       const id = k;
       const time = Math.floor(Math.random() * (21 - 8)) + 8;
+      const minutes = Math.floor(Math.random() * 2);
       const month = Math.floor(Math.random() * (13 - 9)) + 9;
       const day = Math.floor(Math.random() * (31 - 1)) + 1;
-      const datetime = `${moment(`2019-${month}-${day}`, 'YYYY-MM-DD').format('YYYY-MM-DD')} ${moment(`${time}:00 AM`, 'HH:mm').format('hh:mm A')}`;
+      const datetime = `${moment(`2019-${month}-${day}`, 'YYYY-MM-DD').format('YYYY-MM-DD')} ${moment(`${time}:${half[minutes]} AM`, 'HH:mm').format('hh:mm A')}`;
       const name = faker.name.findName();
       const table = tables[Math.floor(Math.random() * 6)];
-      const restaurant = Math.floor(Math.random() * (1001 - 1)) + 1;
+      const restaurant = Math.floor(Math.random() * (2001 - 1)) + 1;
       const row = `"${id}","${datetime}","${name}","${table}","${restaurant}"`;
       write.write(row);
       // OBJECT FORMAT

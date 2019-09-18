@@ -274,7 +274,7 @@ class Reservations extends React.Component {
 
   componentDidMount() {
     const loc = window.location.pathname;
-    const id = loc.split('/')[1];
+    const id = loc.split('/')[2];
     this.getListingData(id)
       .then((data) => {
         this.listingData = data;
@@ -297,7 +297,7 @@ class Reservations extends React.Component {
   }
 
   getListingData(listing = 'L1') {
-    return fetch(`http://localhost:3002/api/${listing}/reservations`, {
+    return fetch(`http://localhost:3002/api/reservations/${listing}`, {
       method: 'GET',
     })
       .then((res) => (
