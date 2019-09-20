@@ -1,6 +1,6 @@
 const knex = require('knex')({
   client: 'pg',
-  connection: 'postgres://52.53.148.193/sdc',
+  connection: 'postgres://localhost/sdc',
 });
 
 const postgresDeleteTables = (callback) => {
@@ -52,7 +52,7 @@ const postgresCreateTables = () => {
                   }
                   knex.schema.createTable('reservations', (table) => {
                     table.increments('id').primary();
-                    table.timestamp('datetime');
+                    table.string('datetime');
                     table.string('name');
                     table.string('table_size');
                     table.integer('restaurant_id');
@@ -71,9 +71,9 @@ const resetTables = () => {
   knex.schema.hasTable('restaurants')
     .then((exists) => {
       if (exists) {
-        create.postgresDeleteTables(create.postgresCreateTables);
+        postgresDeleteTables(postgresCreateTables);
       } else {
-        create.postgresCreateTables();
+        postgresCreateTables();
       }
     });
 };

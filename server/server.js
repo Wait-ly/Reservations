@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -7,7 +8,7 @@ const compression = require('compression');
 
 const app = express();
 const port = 3002;
-const database = require('../database/database.js');
+// const database = require('../database/database.js');
 const postgres = require('../database/postgresDatabase.js');
 
 app.use(cors());

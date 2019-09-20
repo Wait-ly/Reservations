@@ -16,6 +16,7 @@ import BrandonTextRegular from './fonts/BrandonText-Regular.otf';
 import BrandonTextLight from './fonts/BrandonText-Light.otf';
 import BrandonTextMedium from './fonts/BrandonText-Medium.otf';
 import BrandonTextBold from './fonts/BrandonText-Bold.otf';
+import dataForm from '../database/exampleDataForm.js';
 
 const GlobalStyle = styled.createGlobalStyle`
   @font-face {
@@ -276,7 +277,32 @@ class Reservations extends React.Component {
     const loc = window.location.pathname;
     const id = loc.split('/')[2];
     this.getListingData(id)
-      .then((data) => {
+      .then((res) => {
+        const dictionary = {
+          two: 2, four: 4, six: 6, eight: 8, ten: 10, twelve: 12,
+        };
+        console.log(res);
+        const data = dataForm.dataForm;
+        const info = res[0];
+        const totalSeats = (info.two * 2) + (info.four * 4) + (info.six * 6) + (info.eight * 8) + (info.ten * 10) + (info.twelve * 12);
+        const timeSlots = {};
+        for (let i = 0; i < res.length; i += 1) {
+          if (!timeSlots[res[i].datetime]) {
+            timeSlots[res[i].datetime] = dictionary[res[i].table_size];
+          } else {
+            timeSlots[res[i].datetime] += dictionary[res[i].table_size];
+          }
+        }
+        for (let j = 0; j < data.length; j += 1) {
+          for (let k = 0; k < data[j].Seats.length; k += 1) {
+            if (timeSlots[data[j].Seats[k].time]) {
+              data[j].Seats[k].reservations.reserved = timeSlots[data[j].Seats[k].time];
+            }
+            data[j].Seats[k].reservations.open = totalSeats - data[j].Seats[k].reservations.reserved;
+          }
+          data[j].SeatNumber = totalSeats;
+          data[j].Hours = data[j].Hours.slice(0, 11) + info.open + data[j].Hours.slice(19, 38) + info.close + data[j].Hours.slice(46);
+        }
         this.listingData = data;
       })
       .then(() => {
