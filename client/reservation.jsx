@@ -560,4 +560,4 @@ class Reservations extends React.Component {
 
 export default Reservations;
 
-// ReactDOM.render(<Reservations />, document.getElementById('Reservations'));
+ReactDOM.render(<Reservations />, document.getElementById('Reservations'));
