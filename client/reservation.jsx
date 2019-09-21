@@ -281,7 +281,6 @@ class Reservations extends React.Component {
         const dictionary = {
           two: 2, four: 4, six: 6, eight: 8, ten: 10, twelve: 12,
         };
-        console.log(res);
         const data = dataForm.dataForm;
         const info = res[0];
         const totalSeats = (info.two * 2) + (info.four * 4) + (info.six * 6) + (info.eight * 8) + (info.ten * 10) + (info.twelve * 12);
@@ -323,7 +322,7 @@ class Reservations extends React.Component {
   }
 
   getListingData(listing = 'L1') {
-    return fetch(`http://localhost:3002/api/reservations/${listing}`, {
+    return fetch(`http://ec2-54-153-4-197.us-west-1.compute.amazonaws.com:3002/api/reservations/${listing}`, {
       method: 'GET',
     })
       .then((res) => (
