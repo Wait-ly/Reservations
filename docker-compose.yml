@@ -1,17 +1,30 @@
+# version: '3'
+
+# services:
+#   database:
+#     image: mongo:latest
+
+#   reservations:
+#     build: .
+#     depends_on:
+#       - 'database'
+#     ports:
+#       - '3008:3002'
+
+#   seed:
+#     build: ./database
+#     depends_on:
+#       - 'database'
 version: '3'
 
 services:
-  database:
-    image: mongo:latest
 
   reservations:
     build: .
     depends_on:
       - 'database'
     ports:
-      - '3008:3002'
+      - '3002:3002'
 
-  seed:
-    build: ./database
-    depends_on:
-      - 'database'
+  database:
+    image: postgres:latest

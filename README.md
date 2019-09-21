@@ -36,18 +36,18 @@ npm install
 
 ## CRUD API Routes
 
-'GET': /api/:id/reservations
-  - retrieves a reservation for a specified id
-  - returns the data object for the reservation if successful
+'GET': /api/reservations/:id
+  - retrieves reservations for a specified restaurant
+  - returns the data object for the restaurant if successful
 
-'POST': /api/reservations
-  - creates a new reservation with the provided data
-  - returns the data object created for the new reservation if successful
+'POST': /api/reservations/:id
+  - creates a new reservation with the provided data for the specified restaurant in the url
+  - returns a success message if the post is successful
 
-'PUT': /api/:id/reservations
-  - updates a reservation for a specified id
+'PUT': /api/reservations/:id
+  - updates a reservation for a specified restaurant using provided date/time and reserver's name
   - returns the updated data object for the reservation if successful
 
-'DELETE': /api/:id/reservations
-  - deletes a reservation for a specified id
+'DELETE': /api/reservations/:id
+  - deletes a reservation for a specified restaurant using provided date/time and reserver's name
   - returns the deleted data object for the reservation if successful

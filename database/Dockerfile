@@ -1,5 +1,5 @@
-FROM mongo:latest
+# FROM mongo:latest
 
-COPY reservations.json /reservations.json
+# COPY reservations.json /reservations.json
 
-CMD mongoimport --host database --db Reservations --type json --file /reservations.json --jsonArray
+# CMD mongoimport --host database --db Reservations --type json --file /reservations.json --jsonArray

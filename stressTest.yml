@@ -1,0 +1,11 @@
+config:
+  target: 'http://localhost:3002/reservations'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+scenarios:
+  - flow:
+    - loop:
+      - get:
+          url: '/L{{$randomNumber(1,1000000)}}'
+      count: 100
