@@ -4,22 +4,33 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const compression = require('compression');
+const redis = require('redis');
 
-
+const redisClient = redis.createClient(6379);
 const app = express();
 const port = 3002;
 // const database = require('../database/database.js');
 const postgres = require('../database/postgresDatabase.js');
 
+const checkRedis = (req, res, next) => {
+  redisClient.get(req.params.id, (err, reply) => {
+    if (err) throw err;
+    if (reply !== null) {
+      res.send(JSON.parse(reply));
+    } else {
+      next();
+    }
+  });
+};
 app.use(cors());
-app.use(morgan());
+// app.use(morgan());
 app.use(compression());
 app.use(bodyParser());
 app.use('/reservations/:id', express.static('public'));
 
 app.use(express.static('public'));
 
-app.get('/api/reservations/:id', (req, res) => {
+app.get('/api/reservations/:id', checkRedis, (req, res) => {
   const param = req.params.id;
   // MONGODB
   // database.getListingData(param)
@@ -32,6 +43,7 @@ app.get('/api/reservations/:id', (req, res) => {
   //   });
   // POSTGRES
   postgres.getAllReservations(param, (data) => {
+    redisClient.setex(param, 3600, JSON.stringify(data));
     res.send(data);
   });
 });

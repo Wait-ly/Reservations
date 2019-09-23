@@ -321,8 +321,9 @@ class Reservations extends React.Component {
       });
   }
 
+  // `http://ec2-54-153-4-197.us-west-1.compute.amazonaws.com:3002/api/reservations/${listing}`
   getListingData(listing = 'L1') {
-    return fetch(`http://ec2-54-153-4-197.us-west-1.compute.amazonaws.com:3002/api/reservations/${listing}`, {
+    return fetch(`http://localhost:3002/api/reservations/${listing}`, {
       method: 'GET',
     })
       .then((res) => (
