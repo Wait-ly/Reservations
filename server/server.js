@@ -29,7 +29,9 @@ app.use(bodyParser());
 app.use('/reservations/:id', express.static('public'));
 
 app.use(express.static('public'));
-
+app.get('/loaderio-9a3dc1375281aaf9bb65464ec64be0f2', (req, res) => {
+  res.send('loaderio-9a3dc1375281aaf9bb65464ec64be0f2');
+});
 app.get('/api/reservations/:id', checkRedis, (req, res) => {
   const param = req.params.id;
   // MONGODB
