@@ -34,7 +34,7 @@ app.use(express.static('public'));
 app.get('/loaderio-9a3dc1375281aaf9bb65464ec64be0f2', (req, res) => {
   res.send('loaderio-9a3dc1375281aaf9bb65464ec64be0f2');
 });
-app.get('/api/reservations/:id', checkRedis, (req, res) => {
+const dbCall = (req, res) => {
   const param = req.params.id;
   // MONGODB
   // database.getListingData(param)
@@ -50,7 +50,8 @@ app.get('/api/reservations/:id', checkRedis, (req, res) => {
     redisClient.set(param, JSON.stringify(data));
     res.send(data);
   });
-});
+};
+app.get('/api/reservations/:id', checkRedis, dbCall);
 
 app.post('/api/reservations/:id', (req, res) => {
   const { reservation } = req.body;
