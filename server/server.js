@@ -2,7 +2,7 @@ require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const compression = require('compression');
 const redis = require('redis');
 
@@ -45,7 +45,7 @@ app.get('/api/reservations/:id', checkRedis, (req, res) => {
   //   });
   // POSTGRES
   postgres.getAllReservations(param, (data) => {
-    redisClient.setex(param, 3600, JSON.stringify(data));
+    redisClient.set(param, JSON.stringify(data));
     res.send(data);
   });
 });

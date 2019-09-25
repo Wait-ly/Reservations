@@ -81,6 +81,7 @@ const getAllReservations = (id, callback) => {
         //   };
         // }
         callback(res.rows);
+        client.release();
       });
     });
   // For 2000 Restaurants and 10M Reservations
@@ -160,6 +161,7 @@ const postNewReservation = (reservation, callback) => {
     .then((client) => {
       client.query(`INSERT INTO reservations (datetime, name, table_size, restaurant_id) values ('${reservation.datetime}', '${reservation.name}', '${reservation.table_size}', ${reservation.restaurant_id});`, (err, res) => {
         callback(err, res);
+        client.release();
       });
     });
 };
@@ -169,6 +171,7 @@ const updateReservation = (reservation, callback) => {
     .then((client) => {
       client.query(`UPDATE reservations SET datetime = '${reservation.datetime}', name = '${reservation.name}', table_size = '${reservation.table_size}', restaurant_id = '${reservation.restaurant_id}' WHERE name = '${reservation.name}' AND restaurant_id = '${reservation.restaurant_id}';`, (err, res) => {
         callback(err, res);
+        client.release();
       });
     });
 };
@@ -178,6 +181,7 @@ const deleteReservation = (reservation, callback) => {
     .then((client) => {
       client.query(`DELETE FROM reservations WHERE name = '${reservation.name}' AND restaurant_id = '${reservation.restaurant_id}'`, (err, res) => {
         callback(err, res);
+        client.release();
       });
     });
 };
