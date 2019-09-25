@@ -15,14 +15,15 @@ const port = 3002;
 const postgres = require('../database/postgresDatabase.js');
 
 const checkRedis = (req, res, next) => {
-  redisClient.get(req.params.id, (err, reply) => {
+  const redisCB = (err, reply) => {
     if (err) throw err;
     if (reply !== null) {
       res.send(JSON.parse(reply));
     } else {
       next();
     }
-  });
+  };
+  redisClient.get(req.params.id, redisCB);
 };
 app.use(cors());
 // app.use(morgan());
