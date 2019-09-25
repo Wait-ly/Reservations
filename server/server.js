@@ -46,10 +46,11 @@ const dbCall = (req, res) => {
   //     console.log('Error with retrieving data for listing', err);
   //   });
   // POSTGRES
-  postgres.getAllReservations(param, (data) => {
+  const sendData = (data) => {
     redisClient.set(param, JSON.stringify(data));
     res.send(data);
-  });
+  };
+  postgres.getAllReservations(param, sendData);
 };
 app.get('/api/reservations/:id', checkRedis, dbCall);
 
