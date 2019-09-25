@@ -6,7 +6,9 @@ const cors = require('cors');
 const compression = require('compression');
 const redis = require('redis');
 
-const redisClient = redis.createClient(6379);
+const redisClient = redis.createClient(6379, '52.53.215.106');
+redisClient.auth('shinobi');
+
 const app = express();
 const port = 3002;
 // const database = require('../database/database.js');
