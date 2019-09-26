@@ -6,7 +6,7 @@ const cors = require('cors');
 const compression = require('compression');
 const redis = require('redis');
 
-const redisClient = redis.createClient(6379, '54.215.235.165');
+const redisClient = redis.createClient(6379, '54.183.102.176');
 redisClient.auth('shinobi');
 
 const app = express();
@@ -37,7 +37,6 @@ app.get('/loaderio-9a3dc1375281aaf9bb65464ec64be0f2', (req, res) => {
 });
 const dbCall = (req, res) => {
   const param = req.params.id;
-  console.log(param);
   // MONGODB
   // database.getListingData(param)
   //   .then((data) => {

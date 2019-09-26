@@ -6,7 +6,7 @@ const fs = require('fs');
 const client = new Client({
   user: 'postgres',
   password: 'shinobi',
-  host: 'ec2-54-153-76-170.us-west-1.compute.amazonaws.com',
+  host: 'ec2-54-183-182-214.us-west-1.compute.amazonaws.com',
   database: 'sdc',
   port: 5432,
 });
