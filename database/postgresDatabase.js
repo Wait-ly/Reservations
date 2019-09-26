@@ -5,7 +5,7 @@ const dataForm = require('./exampleDataForm.js');
 const pool = new Pool({
   user: 'postgres',
   password: 'shinobi',
-  host: 'ec2-52-53-148-193.us-west-1.compute.amazonaws.com',
+  host: 'ec2-54-153-76-170.us-west-1.compute.amazonaws.com',
   database: 'sdc',
   port: 5432,
 });
