@@ -37,6 +37,7 @@ app.get('/loaderio-9a3dc1375281aaf9bb65464ec64be0f2', (req, res) => {
 });
 const dbCall = (req, res) => {
   const param = req.params.id;
+  console.log(param);
   // MONGODB
   // database.getListingData(param)
   //   .then((data) => {
