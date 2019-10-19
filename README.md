@@ -1,23 +1,12 @@
 # Project Name
 
-Llaminati's Restaurant Reservation System
+Wait.ly Restaurant Reservation System
 
 ## Related Projects
 
-  - https://github.com/llaminati/Banner-Gallery
-  - https://github.com/llaminati/Menu
-  - https://github.com/llaminati/Reservations
-  - https://github.com/llaminati/Reviews
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-
+  - https://github.com/Wait-ly/photo-gallery
+  - https://github.com/Wait-ly/Menu
+  - https://github.com/Wait-ly/Reviews
 
 ## Requirements
 
@@ -25,8 +14,6 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 6.13.0
 - etc
-
-## Development
 
 ### Installing Dependencies
 
