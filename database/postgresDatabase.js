@@ -2,10 +2,17 @@ const { Pool, Client } = require('pg');
 const moment = require('moment');
 const dataForm = require('./exampleDataForm.js');
 
+// const pool = new Pool({
+//   user: 'postgres',
+//   password: 'shinobi',
+//   host: 'ec2-54-183-182-214.us-west-1.compute.amazonaws.com',
+//   database: 'sdc',
+//   port: 5432,
+// });
 const pool = new Pool({
   user: 'postgres',
   password: 'shinobi',
-  host: 'ec2-54-183-182-214.us-west-1.compute.amazonaws.com',
+  host: 'ec2-54-215-249-29.us-west-1.compute.amazonaws.com',
   database: 'sdc',
   port: 5432,
 });
@@ -15,6 +22,7 @@ const pool = new Pool({
 const getAllReservations = (id, callback) => {
   const queryPostgres = (client) => {
     const queryCallback = (err, res) => {
+      console.log(err, res.rows);
       callback(res.rows);
       client.release();
     };
