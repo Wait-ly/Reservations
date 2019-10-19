@@ -197,7 +197,7 @@ describe('Reservations Module', () => {
         {
           reservations: {
             open: 38,
-            reserved: 3,
+            reserved: 2,
           },
           _id: '5d6c8ae33b814c597deb02e8',
           time: '2019-09-02T14:00:00-07:00',
@@ -213,7 +213,7 @@ describe('Reservations Module', () => {
   it('expects there to be a booked div', () => {
     const wrap = shallow(<Reservations />);
     expect(wrap.find('Booked').contains('Booked 65 times today')).toBe(true);
-  })
+  });
 });
 
 

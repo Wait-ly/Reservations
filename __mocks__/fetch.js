@@ -7,7 +7,7 @@ export default function () {
             {
               reservations: {
                 open: 30,
-                reserved: 11,
+                reserved: 10,
               },
               _id: '5d6c8ae33b814c597deb0300',
               time: '2019-09-01T08:30:00-07:00',
